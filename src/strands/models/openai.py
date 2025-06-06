@@ -99,7 +99,7 @@ class OpenAIModel(SAOpenAIModel):
             if choice.delta.content:
                 yield {"chunk_type": "content_delta", "data_type": "text", "data": choice.delta.content}
 
-            if choice.delta.reasoning_content:
+            if hasattr(choice.delta, "reasoning_content") and choice.delta.reasoning_content:
                 yield {
                     "chunk_type": "content_delta",
                     "data_type": "reasoning_content",
