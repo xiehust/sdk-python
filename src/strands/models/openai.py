@@ -99,6 +99,13 @@ class OpenAIModel(SAOpenAIModel):
             if choice.delta.content:
                 yield {"chunk_type": "content_delta", "data_type": "text", "data": choice.delta.content}
 
+            if choice.delta.reasoning_content:
+                yield {
+                    "chunk_type": "content_delta",
+                    "data_type": "reasoning_content",
+                    "data": choice.delta.reasoning_content,
+                }
+
             for tool_call in choice.delta.tool_calls or []:
                 tool_calls.setdefault(tool_call.index, []).append(tool_call)
 
