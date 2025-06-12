@@ -70,7 +70,7 @@ class OpenAIModel(Model, abc.ABC):
         if "text" in content:
             return {"text": content["text"], "type": "text"}
 
-        raise TypeError(f"content_type=<{next(iter(content))}> | unsupported type")
+        return {"text": json.dumps(content), "type": "text"}
 
     @classmethod
     def format_request_message_tool_call(cls, tool_use: ToolUse) -> dict[str, Any]:

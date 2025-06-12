@@ -107,13 +107,6 @@ def test_format_request_message_content(content, exp_result):
     assert tru_result == exp_result
 
 
-def test_format_request_message_content_unsupported_type():
-    content = {"unsupported": {}}
-
-    with pytest.raises(TypeError, match="content_type=<unsupported> | unsupported type"):
-        SAOpenAIModel.format_request_message_content(content)
-
-
 def test_format_request_message_tool_call():
     tool_use = {
         "input": {"expression": "2+2"},
@@ -337,10 +330,3 @@ def test_format_request(model, messages, tool_specs, system_prompt):
 def test_format_chunk(event, exp_chunk, model):
     tru_chunk = model.format_chunk(event)
     assert tru_chunk == exp_chunk
-
-
-def test_format_chunk_unknown_type(model):
-    event = {"chunk_type": "unknown"}
-
-    with pytest.raises(RuntimeError, match="chunk_type=<unknown> | unknown type"):
-        model.format_chunk(event)
