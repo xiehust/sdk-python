@@ -127,7 +127,7 @@ class OpenAIModel(Model):
             return {"text": content["text"], "type": "text"}
         
         if "reasoningContent" in content:
-            return {"text": content["reasoningContent"]["text"], "type": "text"}
+            return {"text": content["reasoningContent"], "type": "text"}
 
         raise TypeError(f"content_type=<{next(iter(content))}> | unsupported type")
 
