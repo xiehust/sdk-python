@@ -121,7 +121,7 @@ def handle_content_block_delta(
         if "input" not in state["current_tool_use"]:
             state["current_tool_use"]["input"] = ""
 
-        state["current_tool_use"]["input"] += delta_content["toolUse"]["input"]
+        state["current_tool_use"]["input"] += str(delta_content["toolUse"]["input"])
         callback_event["callback"] = {"delta": delta_content, "current_tool_use": state["current_tool_use"]}
 
     elif "text" in delta_content:
