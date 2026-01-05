@@ -14,6 +14,7 @@ import json
 
 import pytest
 from mcp import StdioServerParameters, stdio_client
+from mcp.shared.exceptions import McpError
 from mcp.types import BlobResourceContents, TextResourceContents
 from pydantic import AnyUrl
 
@@ -106,7 +107,7 @@ def test_mcp_resources_error_handling():
 
     with mcp_client:
         # Test reading non-existent resource
-        with pytest.raises(Exception):  # Should raise an exception for non-existent resource
+        with pytest.raises(McpError, match="Unknown resource"):
             mcp_client.read_resource_sync("test://nonexistent")
 
 

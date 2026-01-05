@@ -729,7 +729,6 @@ def test_call_tool_sync_embedded_unknown_resource_type_dropped(mock_transport, m
         assert len(result["content"]) == 0  # Unknown resource type should be dropped
 
 
-<<<<<<< HEAD
 @pytest.mark.asyncio
 async def test_handle_error_message_non_fatal_error():
     """Test that _handle_error_message ignores non-fatal errors and logs them."""
@@ -785,7 +784,8 @@ def test_call_tool_sync_with_meta_and_structured_content(mock_transport, mock_se
         assert result["metadata"] == metadata
         assert "structuredContent" in result
         assert result["structuredContent"] == structured_content
-=======
+
+
 # Resource Tests - Sync Methods
 
 
@@ -924,4 +924,3 @@ def test_list_resource_templates_sync_session_not_active():
 
     with pytest.raises(MCPClientInitializationError, match="client session is not running"):
         client.list_resource_templates_sync()
->>>>>>> 2bb18e5 (feat(tools): Add MCP resource operations)
